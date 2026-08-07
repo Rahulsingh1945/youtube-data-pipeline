@@ -12,8 +12,7 @@ __pycache__/
 work/
 
 # Raw scraped dataset
-data/raw/*.csv
-
+# data/raw/*.csv
 # Processed dataset (optional)
 # Remove this line if you want to upload cleaned data
 data/processed/*.csv
