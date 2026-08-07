@@ -15,4 +15,4 @@ work/
 # data/raw/*.csv
 # Processed dataset (optional)
 # Remove this line if you want to upload cleaned data
-data/processed/*.csv
+# data/processed/*.csv
