@@ -1,6 +1,8 @@
 name: Daily YouTube Scraper
 
 on:
+  schedule:
+    - cron: "0 18 * * *"
   workflow_dispatch:
 
 jobs:
