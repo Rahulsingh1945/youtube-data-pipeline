@@ -1,6 +1,8 @@
 from yt_dlp import YoutubeDL
 import pandas as pd
 from pathlib import Path
+MAX_NEW_VIDEOS = 100
+new_videos = 0
 
 
 # ============================================
@@ -9,14 +11,7 @@ from pathlib import Path
 
 channels = [
 
-    # Programming / Software
-    "https://www.youtube.com/@freecodecamp",
-    "https://www.youtube.com/@Fireship",
-    "https://www.youtube.com/@TraversyMedia",
-    "https://www.youtube.com/@ProgrammingwithMosh",
-    "https://www.youtube.com/@Coreyms",
-
-    # Data Science / AI
+    ## Data Science / AI
     "https://www.youtube.com/@3blue1brown",
     "https://www.youtube.com/@sentdex",
     "https://www.youtube.com/@StatQuest",
@@ -120,7 +115,8 @@ video_opts = {
 # ============================================
 
 for channel_no, channel_url in enumerate(channels, start=1):
-
+    if new_videos >= MAX_NEW_VIDEOS:
+        break
     print("\n" + "=" * 60)
     print(
         f"CHANNEL {channel_no}: {channel_url}"
@@ -161,7 +157,8 @@ for channel_no, channel_url in enumerate(channels, start=1):
         # ====================================
 
         for playlist in playlists:
-
+            if new_videos >= MAX_NEW_VIDEOS:
+                break
 
             playlist_id = playlist.get(
                 "id"
@@ -212,6 +209,8 @@ for channel_no, channel_url in enumerate(channels, start=1):
 
                 for i, video in enumerate(videos, start=1):
 
+                    if new_videos >= MAX_NEW_VIDEOS:
+                        break
 
                     video_id = str(
                         video.get("id")
@@ -285,36 +284,12 @@ for channel_no, channel_url in enumerate(channels, start=1):
                             )
 
                         }
-
+                        
 
 
                         all_data.append(row)
-
                         existing_ids.add(video_id)
-
-
-
-                        # Save checkpoint
-
-                        if len(all_data) % 50 == 0:
-
-
-                            df = pd.DataFrame(
-                                all_data
-                            )
-
-
-                            df.to_csv(
-                                output,
-                                index=False
-                            )
-
-
-                            print(
-                                f"Checkpoint saved: {len(df)} videos"
-                            )
-
-
+                        new_videos += 1
 
                     except Exception as e:
 

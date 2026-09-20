@@ -50,10 +50,10 @@ def clean_data():
 
     # Convert upload date
     df["upload_date"] = pd.to_datetime(
-        df["upload_date"],
-        errors="coerce"
-    )
-
+    df["upload_date"],
+    format="%Y%m%d",
+    errors="coerce"
+)
 
     output_file.parent.mkdir(
         exist_ok=True
