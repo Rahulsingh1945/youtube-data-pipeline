@@ -1,7 +1,7 @@
 from yt_dlp import YoutubeDL
 import pandas as pd
 from pathlib import Path
-MAX_NEW_VIDEOS = 100
+MAX_NEW_VIDEOS = 1
 new_videos = 0
 
 
